@@ -1,6 +1,13 @@
 /*
   Custom
 */
+.error
+{
+  max-width: 500px;
+  margin: auto;
+  font-size: 50px;
+  padding-top: 40px;
+}
 
 /*
   Generated
