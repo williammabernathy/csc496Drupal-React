@@ -9,6 +9,95 @@
   padding-top: 40px;
 }
 
+.sepCol{
+  display: flex; 
+  flex-wrap: wrap;
+  margin: 15px 15px 15px 15px;
+}
+
+.card {
+  border: round;
+  border-style: solid;
+  margin: 0 20px 15px 20px;
+}
+
+.App {
+  background-color: #e6eeff;
+}
+
+.content {
+  background-color: white;
+  margin: 0 100px 0 100px;
+}
+
+h1 {
+  font-family: 'Trocchi', serif;
+  font-weight: normal;
+  padding-top: 10px;
+  padding-left: 15px;
+}
+
+.footer {
+  background-color: #f2f2f2;
+  border-radius: 3px;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  margin: 10px 0 0 0;
+}
+
+.footerTable {
+  margin: 8px 8px 8px 8px;
+}
+
+/*
+  Full Recipe Details
+*/
+.previous {
+  float: left;
+  margin: 10px 0 0 0;
+  background-color: #f2f2f2;
+}
+
+.next {
+  float: right;
+  margin: 10px 0 0 0;
+  background-color: #f2f2f2;
+}
+
+.cardFull {
+  border-style: solid;
+  border-width: 1px;
+  border-color: lightgrey;
+  border-radius: 10px;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  margin: 10px 10px 10px 10px;
+  overflow: hidden;
+}
+
+.cardFullImage {
+  height:auto;
+}
+
+/*
+  NavBar
+*/
+.mainMenu {
+  border-style: solid;
+  border-width: 1px;
+  border-color: lightgrey;
+  border-radius: 3px;
+}
+
+.navLink {
+  font-size: 20px;
+  margin: 10px 10px 10px 10px;
+}
+
 /*
   Generated
 
