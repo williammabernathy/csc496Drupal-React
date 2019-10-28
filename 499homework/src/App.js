@@ -74,6 +74,15 @@ const RecipeFull = ({ ID, title, field_images, field_ingredients, body, changeRe
   );
 }
 
+const HomeHeading = ( { body } ) =>
+{
+  return (
+    <div>
+      <div dangerouslySetInnerHTML={{ __html: body }}/>
+    </div>
+  );
+}
+
 //loading screen
 //currently only used when page is first loaded
 const Loading = () =>
@@ -125,12 +134,14 @@ class App extends Component
     super(props);
 
     this.state = {
-      results: null,            //data from api call
+      results: null,            //data from fetching recipies
       page: "home",             //what page we're currently on
       currentRecipe: null,      //which recipe has been selected; the recipe ID
+      homeHead: null,           //data from fetching home page
     }
 
     this.fetchRecipes = this.fetchRecipes.bind(this);
+    this.fetchHome = this.fetchHome.bind(this);
     this.viewRecipeClick = this.viewRecipeClick.bind(this);
     this.viewHome = this.viewHome.bind(this);
     this.viewRecipeNavClick = this.viewRecipeNavClick.bind(this);
@@ -148,9 +159,17 @@ class App extends Component
     .then(results => this.setState({ results }))
   }
 
+  fetchHome()
+  {
+    fetch(`http://gtest.dev.wwbtc.com/json/page?_format=json`)
+    .then(response => response.json())
+    .then(homeHead => this.setState({ homeHead }))
+  }
+
   componentDidMount() 
   { 
     this.fetchRecipes(); 
+    this.fetchHome();
   }
 
   //the view more details on a recipe card was pressed, show that recipe's
@@ -198,11 +217,11 @@ class App extends Component
   */
   render() 
   {
-    const { results, page, currentRecipe } = this.state;
+    const { results, page, currentRecipe, homeHead} = this.state;
 
     //if results null, show loading
     //first pass always returns null
-    if (!results) 
+    if (!results || !homeHead) 
     {
       return (
         <div className="App">
@@ -231,24 +250,39 @@ class App extends Component
                 viewHome={this.viewHome}
                 viewRecipeNavClick={this.viewRecipeNavClick}
               />
+              <div className="homeHeader">
+                {homeHead.map((homeHeading, index) => (
+                  <HomeHeading 
+                    key={index}
+                    body={homeHeading["body"]} 
+                  />
+                ))}
+              </div>
+
+              <hr />
 
               <h1>Recipes</h1>
 
-              <div className='sepCol'>
-                {results.map((recipes, index) =>
-                  <Recipe key={index}
+              <div className="sepCol">
+                {results.map((recipes, index) => (
+                  <Recipe
+                    key={index}
                     ID={index}
-                    title={recipes['title']}
-                    field_images={recipes['field_images']}
-                    field_summary={recipes['field_summary']}
+                    title={recipes["title"]}
+                    field_images={recipes["field_images"]}
+                    field_summary={recipes["field_summary"]}
                     viewRecipeClick={this.viewRecipeClick}
                   />
-                )}
+                ))}
               </div>
 
-              <hr/> 
+              <hr />
 
-              <h1>Articles</h1><br /><br /><br />
+              <h1>Articles</h1>
+              ToDo
+              <br />
+              <br />
+              <br />
 
               <Footer />
             </div>

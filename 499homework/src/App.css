@@ -15,6 +15,12 @@
   margin: 15px 15px 15px 15px;
 }
 
+.homeHeader {
+  display: flex; 
+  flex-wrap: wrap;
+  margin: 15px 15px 15px 15px;
+}
+
 .card {
   border: round;
   border-style: solid;
