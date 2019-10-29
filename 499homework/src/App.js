@@ -33,7 +33,7 @@ const Recipe = ( { ID, title, field_images, field_summary, viewRecipeClick } ) =
           <CardTitle><b>{title}</b></CardTitle>
           <CardText><div dangerouslySetInnerHTML={{ __html: field_summary }}/></CardText>
 
-          {/* whenever an element is clicked, get is ID */}
+          {/* whenever an element is clicked, get its ID */}
           <center>
             <Button href={`${recURL}/${ID}`} onClick={() => viewRecipeClick(ID)}>
               View Recipe
