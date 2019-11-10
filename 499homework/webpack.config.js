@@ -1,6 +1,8 @@
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 
+//"start": "webpack-dev-server --config ./webpack.config.js --mode development",
+
 module.exports =
     {
         target: 'node', 
@@ -31,19 +33,23 @@ module.exports =
         {
             extensions: ['*', '.js', '.jsx']
         },
+        /*
         output:
         {
             path: __dirname + '/dist',
             publicPath: '/',
             filename: 'bundle.js'
         },
+        */
         plugins: 
         [
             new webpack.HotModuleReplacementPlugin()
         ],
+        /*
         devServer:
         {
             contentBase: './dist',
             hot: true
         }
+        */
     };

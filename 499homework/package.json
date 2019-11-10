@@ -16,7 +16,7 @@
     "touch-cli": "0.0.1"
   },
   "scripts": {
-    "start": "webpack-dev-server --config ./webpack.config.js --mode development",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "jest --config ./jest.config.json",
     "test:watch": "npm run test -- --watch",
@@ -57,10 +57,6 @@
     "jest": "^24.9.0",
     "jest-css-modules": "^2.1.0",
     "jest-css-modules-transform": "^3.1.0",
-    "react-hot-loader": "^4.12.15",
-    "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.9.0",
-    "webpack-node-externals": "^1.7.2"
+    "react-hot-loader": "^4.12.15"
   }
 }
