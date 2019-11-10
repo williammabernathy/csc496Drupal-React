@@ -17,7 +17,7 @@
   "scripts": {
     "start": "webpack-dev-server --config ./webpack.config.js --mode development",
     "build": "react-scripts build",
-    "test": "jest",
+    "test": "jest --config ./jest.config.json",
     "test:watch": "npm run test -- --watch",
     "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls",
     "eject": "react-scripts eject"
@@ -43,6 +43,11 @@
       "@babel/preset-react"
     ]
   },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|less|scss|sss|styl)$": "<rootDir>/node_modules/jest-css-modules"
+    }
+  },
   "devDependencies": {
     "@babel/core": "^7.7.0",
     "@babel/preset-env": "^7.7.1",
@@ -53,6 +58,7 @@
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
     "jest": "^24.9.0",
+    "jest-css-modules": "^2.1.0",
     "react-hot-loader": "^4.12.15",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
