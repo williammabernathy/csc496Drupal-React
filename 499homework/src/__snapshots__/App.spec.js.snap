@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App snapshot renders 1`] = `
+<div
+  className="App"
+>
+  <div
+    className="content"
+  >
+    <nav
+      className="mainMenu navbar navbar-expand-lg navbar-light bg-light"
+    >
+      <a
+        className="navBrand navbar-brand"
+        href="#home"
+        onClick={[Function]}
+      >
+        CSC496
+      </a>
+      <div
+        className="navbar-nav"
+        onKeyDown={[Function]}
+      >
+        <a
+          className="navLink nav-link"
+          data-rb-event-key="#home"
+          href="#home"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+        >
+          Home
+        </a>
+        <a
+          className="navLink nav-link"
+          data-rb-event-key="#recipe"
+          href="#recipe"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+        >
+          Recipes
+        </a>
+        <a
+          className="navLink nav-link"
+          data-rb-event-key="https://github.com/williammabernathy/csc496Drupal-React"
+          href="https://github.com/williammabernathy/csc496Drupal-React"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+        >
+          Github
+        </a>
+      </div>
+    </nav>
+    <div
+      className="error"
+    >
+      Loading..
+    </div>
+    <div
+      className="footer"
+    >
+      <span>
+        CSC 496 Project
+      </span>
+       
+      <br />
+      <span>
+        by William Abernathy
+      </span>
+    </div>
+  </div>
+</div>
+`;

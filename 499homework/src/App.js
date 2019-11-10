@@ -7,6 +7,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 /*
   Variables/Constants
 */
+const fetch = require("node-fetch");
+
 //api url variables
 const PATH_BASE = 'http://gtest.dev.wwbtc.com'; 
 const PATH_JSON = '/json'; 
