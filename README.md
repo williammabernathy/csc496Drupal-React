@@ -18,7 +18,7 @@ npm install
 ```
 This will set up all necessary dependencies. After install, you may run the project in developer mode using the command:
 ```
-npm run
+npm start
 ```
 ### Example
 1. Open the cloned repo folder using Visual Studio Code.
@@ -30,7 +30,7 @@ npm run
     ```
 5. Once installation completes, run:
     ```
-    npm run
+    npm start
     ```
     The project should now be running a development environment locally (Ex: localhost:3000).
 ## Testing
