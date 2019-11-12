@@ -3,24 +3,8 @@ import { Navbar, Nav } from 'react-bootstrap';
 import { Card, CardImg, CardText, CardBody, CardTitle, Button } from 'reactstrap';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { fetch, PATH_BASE, PATH_JSON, PARAM_TYPE, recURL, homeURL } from './constants/index.js'
 
-/*
-  Variables/Constants
-*/
-const fetch = require("node-fetch");
-
-//api url variables
-const PATH_BASE = 'http://gtest.dev.wwbtc.com'; 
-const PATH_JSON = '/json'; 
-const PARAM_TYPE = '/rec';
-
-//variables for changing url
-const recURL = "#recipe";
-const homeURL = "#home";
-
-/*
-  Components
-*/
 //display a basic card of individual recipes
 const Recipe = ( { ID, title, field_images, field_summary, viewRecipeClick } ) =>
 {
