@@ -1,14 +1,21 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import App from './App';
+import App, { Recipe } from './App';
+import ReactDOM from 'react-dom';
 import { mount } from 'enzyme';
 
 describe('App', () => 
 {
-    test('snapshot renders', () => {
+    test('app snapshot renders', () => {
         const component = renderer.create(<App />);
         let tree = component.toJSON();
         expect(tree).toMatchSnapshot();
+    });
+
+    it('app renders without crashing', () => {
+        const div = document.createElement('div');
+        ReactDOM.render(<App />, div);
+        ReactDOM.unmountComponentAtNode(div);
     });
 
     /*
@@ -19,6 +26,16 @@ describe('App', () =>
     });
     */
 });
+
+/*
+describe('Recipe', () => 
+{
+    it("recipe renders", () => {
+        const div = document.createElement("div");
+        ReactDOM.render(<Recipe></Recipe>, div);
+    });
+});
+*/
 
 describe('My Test Suite', () => 
 {
