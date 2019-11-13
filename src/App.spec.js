@@ -93,6 +93,12 @@ describe('Header', () =>
         expect(items).toHaveLength(1);
     });
 
+    /*
+    it('should render a pc MenuItem', () => {
+        navComponent.find('.navBrand').simulate('click');
+    });
+    */
+
     test('Header snapshot renders', () => {
         const component = renderer.create(<Header />);
         let tree = component.toJSON();
