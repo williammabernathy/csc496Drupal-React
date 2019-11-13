@@ -1,9 +1,11 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import App, { Recipe, RecipeFull, HomeHeading, Footer, Header, Loading } from './App';
+import { Navbar, Nav } from 'react-bootstrap';
 import { mount, shallow } from 'enzyme';
 import { Button } from 'reactstrap';
 
+/* App Component (Main) */
 describe('App', () => 
 {
     test('App snapshot renders', () => {
@@ -13,6 +15,7 @@ describe('App', () =>
     });
 });
 
+/* Recipe Component */
 describe('Recipe', () => 
 {
     test('Recipe snapshot renders', () => {
@@ -22,14 +25,18 @@ describe('Recipe', () =>
     });
 
     it('view more button is clicked', () => {
-        const mockView = jest.fn();
-        const button = shallow((<Button onClick={mockView}></Button>))
-
-        button.find('button').simulate('click');
-        expect(mockView.mock.calls.length).toEqual(1);
+        const mockNext = jest.fn();
+        const recButton = shallow(
+            <Button href={``} onClick={mockNext}>
+                View Recipe
+            </Button>
+        );
+        recButton.simulate('click');
+        expect(mockNext).toHaveBeenCalled();
     });
 });
 
+/* RecipeFull Component */
 describe('RecipeFull', () => 
 {
     test('Recipe Full snapshot renders', () => {
@@ -56,6 +63,8 @@ describe('RecipeFull', () =>
     });
 });
 
+/* HomeHeading Component */
+/* Coverage Complete */
 describe('HomeHeading', () => 
 {
     test('HomeHeading snapshot renders', () => {
@@ -65,6 +74,8 @@ describe('HomeHeading', () =>
     });
 });
 
+/* Footer Component */
+/* Coverage Complete */
 describe('Footer', () => 
 {
     test('Footer snapshot renders', () => {
@@ -74,6 +85,7 @@ describe('Footer', () =>
     });
 });
 
+/* Header Component */
 describe('Header', () => 
 {
     test('Header snapshot renders', () => {
@@ -83,19 +95,13 @@ describe('Header', () =>
     });
 });
 
+/* Loading Component */
+/* Coverage Complete */
 describe('Loading', () => 
 {
     test('Loading snapshot renders', () => {
         const component = renderer.create(<Loading />);
         let tree = component.toJSON();
         expect(tree).toMatchSnapshot();
-    });
-});
-
-describe('My Test Suite', () => 
-{
-    it('My Test Case', () => 
-    {
-        expect(true).toEqual(true);
     });
 });

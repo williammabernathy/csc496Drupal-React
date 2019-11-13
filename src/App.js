@@ -211,7 +211,19 @@ class App extends Component
   */
   render() 
   {
+    //get our data to use for rendering
     const { results, page, currentRecipe, homeHead} = this.state;
+
+    //slice up the results and only take first 2/3 to display on the homepage
+    if(results)
+    {
+      var resultsRecHome = results.slice(0, 2);
+    }
+
+    if(homeHead)
+    {
+      var homeHeadSlice = homeHead.slice(0, 1);
+    }
 
     //if results null, show loading
     //first pass always returns null
@@ -245,7 +257,7 @@ class App extends Component
                 viewRecipeNavClick={this.viewRecipeNavClick}
               />
               <div className="homeHeader">
-                {homeHead.map((homeHeading, index) => (
+                {homeHeadSlice.map((homeHeading, index) => (
                   <HomeHeading 
                     key={index}
                     body={homeHeading["body"]} 
@@ -258,7 +270,7 @@ class App extends Component
               <h1>Recipes</h1>
 
               <div className="sepCol">
-                {results.map((recipes, index) => (
+                {resultsRecHome.map((recipes, index) => (
                   <Recipe
                     key={index}
                     ID={index}
