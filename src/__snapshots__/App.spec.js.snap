@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App snapshot renders 1`] = `
+exports[`App App snapshot renders 1`] = `
 <div
   className="App"
 >
@@ -67,6 +67,190 @@ exports[`App snapshot renders 1`] = `
         by William Abernathy
       </span>
     </div>
+  </div>
+</div>
+`;
+
+exports[`Footer Footer snapshot renders 1`] = `
+<div
+  className="footer"
+>
+  <span>
+    CSC 496 Project
+  </span>
+   
+  <br />
+  <span>
+    by William Abernathy
+  </span>
+</div>
+`;
+
+exports[`Header Header snapshot renders 1`] = `
+<nav
+  className="mainMenu navbar navbar-expand-lg navbar-light bg-light"
+>
+  <a
+    className="navBrand navbar-brand"
+    href="#home"
+    onClick={[Function]}
+  >
+    CSC496
+  </a>
+  <div
+    className="navbar-nav"
+    onKeyDown={[Function]}
+  >
+    <a
+      className="navLink nav-link"
+      data-rb-event-key="#home"
+      href="#home"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+    >
+      Home
+    </a>
+    <a
+      className="navLink nav-link"
+      data-rb-event-key="#recipe"
+      href="#recipe"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+    >
+      Recipes
+    </a>
+    <a
+      className="navLink nav-link"
+      data-rb-event-key="https://github.com/williammabernathy/csc496Drupal-React"
+      href="https://github.com/williammabernathy/csc496Drupal-React"
+      onClick={[Function]}
+      onKeyDown={[Function]}
+    >
+      Github
+    </a>
+  </div>
+</nav>
+`;
+
+exports[`HomeHeading HomeHeading snapshot renders 1`] = `
+<div>
+  <div
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": undefined,
+      }
+    }
+  />
+</div>
+`;
+
+exports[`Loading Loading snapshot renders 1`] = `
+<div
+  className="error"
+>
+  Loading..
+</div>
+`;
+
+exports[`Recipe Recipe snapshot renders 1`] = `
+<div
+  className="recipeStyle"
+>
+  <div
+    className="card card"
+    style={
+      Object {
+        "border": "1px solid lightgrey",
+        "width": "18rem",
+      }
+    }
+  >
+    <img
+      alt="Food Image"
+      className="card-img-top"
+      src="http://gtest.dev.wwbtc.comundefined"
+      width="25%"
+    />
+    <div
+      className="card-body"
+    >
+      <div
+        className="card-title"
+      >
+        <b />
+      </div>
+      <p
+        className="card-text"
+      >
+        <div
+          dangerouslySetInnerHTML={
+            Object {
+              "__html": undefined,
+            }
+          }
+        />
+      </p>
+      <center>
+        <a
+          aria-label={null}
+          className="btn btn-secondary"
+          href="#recipe/undefined"
+          onClick={[Function]}
+        >
+          View Recipe
+        </a>
+      </center>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`RecipeFull Recipe Full snapshot renders 1`] = `
+<div
+  className="cardFull"
+>
+  <div
+    className="cardFullImage"
+  >
+    <img
+      alt="Food"
+      src="http://gtest.dev.wwbtc.comundefined"
+    />
+  </div>
+  <div>
+    <hr />
+    <div>
+      <b />
+    </div>
+    <br />
+    <div />
+    <br />
+    <div>
+      <div
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": undefined,
+          }
+        }
+      />
+    </div>
+    <hr />
+    <a
+      aria-label={null}
+      className="previous btn btn-secondary"
+      href="#recipe/undefined"
+      onClick={[Function]}
+    >
+      Previous
+    </a>
+    <a
+      aria-label={null}
+      className="next btn btn-secondary"
+      href="#recipe/undefined"
+      onClick={[Function]}
+    >
+      Next
+    </a>
   </div>
 </div>
 `;
