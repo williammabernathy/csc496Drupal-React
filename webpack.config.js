@@ -1,8 +1,6 @@
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 
-//"start": "webpack-dev-server --config ./webpack.config.js --mode development",
-
 module.exports =
     {
         target: 'node', 

@@ -92,7 +92,6 @@ describe('Loading', () =>
     });
 });
 
-// dummy test for reference
 describe('My Test Suite', () => 
 {
     it('My Test Case', () => 
