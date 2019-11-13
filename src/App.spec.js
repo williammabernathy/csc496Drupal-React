@@ -25,14 +25,7 @@ describe('Recipe', () =>
     });
 
     it('view more button is clicked', () => {
-        const mockNext = jest.fn();
-        const recButton = shallow(
-            <Button href={``} onClick={mockNext}>
-                View Recipe
-            </Button>
-        );
-        recButton.simulate('click');
-        expect(mockNext).toHaveBeenCalled();
+        
     });
 });
 
@@ -46,12 +39,11 @@ describe('RecipeFull', () =>
     });
 
     // ID, title, field_images, field_ingredients, body, changeRecipe
+    /*
     it('next button is clicked', () => {
-        const mockNext = jest.fn();
-        const button = shallow((<Button onClick={mockNext}></Button>))
-
-        button.find('button').simulate('click');
-        expect(mockNext.mock.calls.length).toEqual(1);
+        const wrapper = mount(<RecipeFull />)
+        wrapper.find('.next').at(0).simulate('click');
+        expect(wrapper.update().state().ID).toEqual(1);
     });
 
     it('previous button is clicked', () => {
@@ -61,6 +53,7 @@ describe('RecipeFull', () =>
         button.find('button').simulate('click');
         expect(mockPrevious.mock.calls.length).toEqual(1);
     });
+    */
 });
 
 /* HomeHeading Component */
@@ -88,6 +81,18 @@ describe('Footer', () =>
 /* Header Component */
 describe('Header', () => 
 {
+    const navComponent = shallow(<Header />);
+
+    it('should contain 3 nav.links', () => {
+        const items = navComponent.find(Nav.Link);
+        expect(items).toHaveLength(3);
+    });
+
+    it('should contain 1 navbar.brand', () => {
+        const items = navComponent.find(Navbar.Brand);
+        expect(items).toHaveLength(1);
+    });
+
     test('Header snapshot renders', () => {
         const component = renderer.create(<Header />);
         let tree = component.toJSON();
