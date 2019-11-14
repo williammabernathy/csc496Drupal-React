@@ -59,9 +59,16 @@ describe('App', () => {
         expect(wrapperMount.find(Recipe).length).toEqual(2);
     });
 
-    it('renders RecipeFull', () =>
+    it('renders RecipeFull current at 1', () =>
     {
         wrapperMount.setState({ results: mockRecipe, currentRecipe: 1, homeHead: mockHome, page: "recipeDetailed" });
+        //wrapper.instance().forceUpdate()
+        expect(wrapperMount.find(RecipeFull).length).toEqual(1);
+    });
+
+    it('renders RecipeFull current at 0', () =>
+    {
+        wrapperMount.setState({ results: mockRecipe, currentRecipe: 0, homeHead: mockHome, page: "recipeDetailed" });
         //wrapper.instance().forceUpdate()
         expect(wrapperMount.find(RecipeFull).length).toEqual(1);
     });
