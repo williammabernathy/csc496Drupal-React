@@ -91,11 +91,11 @@ const Header = ({ viewHome, viewRecipeNavClick }) =>
 {
   return (
     <Navbar bg="light" expand="lg" className="mainMenu">
-      <Navbar.Brand className="navBrand" href={homeURL} onClick={() => viewHome()}>CSC496</Navbar.Brand>
+      <Navbar.Brand id="brand" className="navBrand" href={homeURL} onClick={() => viewHome()}>CSC496</Navbar.Brand>
       <Nav>
-        <Nav.Link className="navLink" href={homeURL} onClick={() => viewHome()}>Home</Nav.Link>
-        <Nav.Link className="navLink" href={recURL} onClick={() => viewRecipeNavClick()}>Recipes</Nav.Link>
-        <Nav.Link className="navLink" href="https://github.com/williammabernathy/csc496Drupal-React">Github</Nav.Link>
+        <Nav.Link id="viewHome" className="navLink" href={homeURL} onClick={() => viewHome()}>Home</Nav.Link>
+        <Nav.Link id="viewRecList" className="navLink" href={recURL} onClick={() => viewRecipeNavClick()}>Recipes</Nav.Link>
+        <Nav.Link id="viewGit" className="navLink" href="https://github.com/williammabernathy/csc496Drupal-React">Github</Nav.Link>
       </Nav>
     </Navbar>
   );

@@ -66,13 +66,6 @@ describe('App', () => {
         expect(wrapperMount.find(RecipeFull).length).toEqual(1);
     });
 
-    it('renders RecipeFull current at 0', () =>
-    {
-        wrapperMount.setState({ results: mockRecipe, currentRecipe: 0, homeHead: mockHome, page: "recipeDetailed" });
-        //wrapper.instance().forceUpdate()
-        expect(wrapperMount.find(RecipeFull).length).toEqual(1);
-    });
-
     it('renders Loading', ()  =>
     {
         expect(wrapperMount.find(Loading).length).toEqual(1);
@@ -226,12 +219,41 @@ describe('Footer', () =>
 /* Header Component */
 describe('Header', () => 
 {
-    const navComponent = shallow(<Header />);
+    let navComponent;
+    const setState = jest.fn();
+    const useStateSpy = jest.spyOn(React, 'useState')
+    useStateSpy.mockImplementation((init) => [init, setState]);
+
+    beforeEach(() => {
+        navComponent = shallow(<Header
+            viewHome={setState}
+            viewRecipeNavClick={setState}
+        />);
+    });
+
+    test('Header snapshot renders', () => 
+    {
+        const component = renderer.create(<Header />);
+        let tree = component.toJSON();
+        expect(tree).toMatchSnapshot();
+    });
 
     it('should contain 3 nav.links', () => 
     {
         const items = navComponent.find(Nav.Link);
         expect(items).toHaveLength(3);
+    });
+
+    it('viewHome link is clicked', () => 
+    {
+        navComponent.find('#viewHome').props().onClick();
+        expect(setState).toHaveBeenCalledWith();
+    });
+
+    it('viewRecList link is clicked', () => 
+    {
+        navComponent.find('#viewRecList').props().onClick();
+        expect(setState).toHaveBeenCalledWith();
     });
 
     it('should contain 1 navbar.brand', () => 
@@ -240,11 +262,10 @@ describe('Header', () =>
         expect(items).toHaveLength(1);
     });
 
-    test('Header snapshot renders', () => 
+    it('brand link is clicked', () => 
     {
-        const component = renderer.create(<Header />);
-        let tree = component.toJSON();
-        expect(tree).toMatchSnapshot();
+        navComponent.find('#brand').props().onClick();
+        expect(setState).toHaveBeenCalledWith();
     });
 });
 

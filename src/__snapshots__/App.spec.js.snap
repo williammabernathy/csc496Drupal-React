@@ -13,6 +13,7 @@ exports[`App App snapshot renders 1`] = `
       <a
         className="navBrand navbar-brand"
         href="#home"
+        id="brand"
         onClick={[Function]}
       >
         CSC496
@@ -101,6 +102,7 @@ exports[`Header Header snapshot renders 1`] = `
   <a
     className="navBrand navbar-brand"
     href="#home"
+    id="brand"
     onClick={[Function]}
   >
     CSC496
