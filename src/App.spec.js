@@ -1,9 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import App, { Recipe, RecipeFull, HomeHeading, Footer, Header, Loading } from './App';
-import { Navbar, Nav, Button } from 'react-bootstrap';
+import { Navbar, Nav} from 'react-bootstrap';
 import { mount, shallow } from 'enzyme';
-import { doesNotReject } from 'assert';
 
 /* App Component (Main) */
 describe('App', () => {
@@ -15,14 +14,14 @@ describe('App', () => {
             body: "body",
             field_images: "image",
             field_ingredients: "1 111",
-            field_summary: "summary ",
+            field_summary: "summary",
             title: "title",
         },
         {
             body: "body",
             field_images: "image",
             field_ingredients: "1 1 1 1",
-            field_summary: "summary ",
+            field_summary: "summary",
             title: "title ",
         }
     ]
@@ -62,7 +61,7 @@ describe('App', () => {
 
     it('renders RecipeFull', () =>
     {
-        wrapperMount.setState({ results: mockRecipe, homeHead: mockHome, page: "recipeDetailed" });
+        wrapperMount.setState({ results: mockRecipe, currentRecipe: 1, homeHead: mockHome, page: "recipeDetailed" });
         //wrapper.instance().forceUpdate()
         expect(wrapperMount.find(RecipeFull).length).toEqual(1);
     });
