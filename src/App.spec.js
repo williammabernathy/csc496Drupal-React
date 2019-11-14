@@ -7,33 +7,37 @@ import { mount, shallow } from 'enzyme';
 
 /* App Component (Main) */
 describe('App', () => {
+    const wrapper = shallow(<App />);
+    const wrapperMount = mount(<App />);
+
     test('App snapshot renders', () => {
         const component = renderer.create(<App />);
         let tree = component.toJSON();
         expect(tree).toMatchSnapshot();
     });
 
+    it('will mount', () =>
+    {
+        expect(wrapper.length).toEqual(1);
+    });
+
     it('tests a function viewRecipeClick', () =>
     {
-        const wrapper = shallow(<App />);
         expect(wrapper.instance().viewRecipeClick()).toMatchSnapshot();
     });
 
     it('tests a function viewHome', () =>
     {
-        const wrapper = shallow(<App />);
         expect(wrapper.instance().viewHome()).toMatchSnapshot();
     });
 
     it('tests a function viewRecipeNavClick', () =>
     {
-        const wrapper = shallow(<App />);
         expect(wrapper.instance().viewRecipeNavClick()).toMatchSnapshot();
     });
 
     it('tests a function changeRecipe', () =>
     {
-        const wrapper = shallow(<App />);
         expect(wrapper.instance().changeRecipe()).toMatchSnapshot();
     });
 });
