@@ -71,6 +71,14 @@ exports[`App App snapshot renders 1`] = `
 </div>
 `;
 
+exports[`App tests a function changeRecipe 1`] = `undefined`;
+
+exports[`App tests a function viewHome 1`] = `undefined`;
+
+exports[`App tests a function viewRecipeClick 1`] = `undefined`;
+
+exports[`App tests a function viewRecipeNavClick 1`] = `undefined`;
+
 exports[`Footer Footer snapshot renders 1`] = `
 <div
   className="footer"

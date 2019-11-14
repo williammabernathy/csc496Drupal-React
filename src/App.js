@@ -11,14 +11,13 @@ const Recipe = ( { ID, title, field_images, field_summary, viewRecipeClick } ) =
   //split images, only want the first of two
   if(field_images)
   {
-    const image = field_images.split(',').slice(0)[0].trim();
-    field_images = image;
+    var image = field_images.split(',').slice(0)[0].trim();
   }
 
   return (
     <div className="recipeStyle">
       <Card className = "card" style={{ width: '18rem', border: "1px solid lightgrey" }}>
-        <CardImg top width="25%" src={`${PATH_BASE}${field_images}`} alt="Food Image" />
+        <CardImg top width="25%" src={`${PATH_BASE}${image}`} alt="Food Image" />
         <CardBody>
           <CardTitle><b>{title}</b></CardTitle>
           <CardText><div dangerouslySetInnerHTML={{ __html: field_summary }}/></CardText>
@@ -42,13 +41,12 @@ const RecipeFull = ({ ID, title, field_images, field_ingredients, body, changeRe
   //split images, only want the first of two
   if(field_images)
   {
-    const image = field_images.split(',').slice(0)[0].trim();
-    field_images = image;
+    var image = field_images.split(',').slice(0)[0].trim();
   }
 
   return(
     <div className="cardFull" >
-      <div className="cardFullImage"><img src={`${PATH_BASE}${field_images}`} alt="Food" /></div>
+      <div className="cardFullImage"><img src={`${PATH_BASE}${image}`} alt="Food" /></div>
       <div>
       <hr/>
         <div><b>{title}</b></div><br/>
@@ -148,16 +146,12 @@ class App extends Component
  //api call
   fetchRecipes()
   {
-    fetch(`${PATH_BASE}${PATH_JSON}${PARAM_TYPE}`)
-    .then(response => response.json())  
-    .then(results => this.setState({ results }))
+    fetch(`${PATH_BASE}${PATH_JSON}${PARAM_TYPE}`).then(response => response.json()).then(results => this.setState({ results }))
   }
 
   fetchHome()
   {
-    fetch(`http://gtest.dev.wwbtc.com/json/page?_format=json`)
-    .then(response => response.json())
-    .then(homeHead => this.setState({ homeHead }))
+    fetch(`http://gtest.dev.wwbtc.com/json/page?_format=json`).then(response => response.json()).then(homeHead => this.setState({ homeHead }))
   }
 
   componentDidMount() 
@@ -196,7 +190,7 @@ class App extends Component
       this.setState({ currentRecipe: results.length - 1 });
     }
     //if we're at max and the length is reached, start over from beginning
-    else if (ID === results.length)
+    else if (results && ID === results.length)
     {
       this.setState({ currentRecipe: 0 })
     }

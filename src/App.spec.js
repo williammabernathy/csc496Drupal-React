@@ -1,23 +1,45 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import App, { Recipe, RecipeFull, HomeHeading, Footer, Header, Loading } from './App';
+import { fetch, PATH_BASE, PATH_JSON, PARAM_TYPE, recURL, homeURL } from './constants/index.js'
 import { Navbar, Nav } from 'react-bootstrap';
 import { mount, shallow } from 'enzyme';
-import { Button } from 'reactstrap';
 
 /* App Component (Main) */
-describe('App', () => 
-{
+describe('App', () => {
     test('App snapshot renders', () => {
         const component = renderer.create(<App />);
         let tree = component.toJSON();
         expect(tree).toMatchSnapshot();
     });
+
+    it('tests a function viewRecipeClick', () =>
+    {
+        const wrapper = shallow(<App />);
+        expect(wrapper.instance().viewRecipeClick()).toMatchSnapshot();
+    });
+
+    it('tests a function viewHome', () =>
+    {
+        const wrapper = shallow(<App />);
+        expect(wrapper.instance().viewHome()).toMatchSnapshot();
+    });
+
+    it('tests a function viewRecipeNavClick', () =>
+    {
+        const wrapper = shallow(<App />);
+        expect(wrapper.instance().viewRecipeNavClick()).toMatchSnapshot();
+    });
+
+    it('tests a function changeRecipe', () =>
+    {
+        const wrapper = shallow(<App />);
+        expect(wrapper.instance().changeRecipe()).toMatchSnapshot();
+    });
 });
 
 /* Recipe Component */
-describe('Recipe', () => 
-{
+describe('Recipe', () => {
     test('Recipe snapshot renders', () => {
         const component = renderer.create(<Recipe />);
         let tree = component.toJSON();
@@ -25,13 +47,12 @@ describe('Recipe', () =>
     });
 
     it('view more button is clicked', () => {
-        
+        // ...TODO
     });
 });
 
 /* RecipeFull Component */
-describe('RecipeFull', () => 
-{
+describe('RecipeFull', () => {
     test('Recipe Full snapshot renders', () => {
         const component = renderer.create(<RecipeFull />);
         let tree = component.toJSON();
@@ -39,27 +60,19 @@ describe('RecipeFull', () =>
     });
 
     // ID, title, field_images, field_ingredients, body, changeRecipe
-    /*
     it('next button is clicked', () => {
-        const wrapper = mount(<RecipeFull />)
-        wrapper.find('.next').at(0).simulate('click');
-        expect(wrapper.update().state().ID).toEqual(1);
+        // ...TODO
     });
 
     it('previous button is clicked', () => {
-        const mockPrevious = jest.fn();
-        const button = shallow((<Button onClick={mockPrevious}></Button>))
-
-        button.find('button').simulate('click');
-        expect(mockPrevious.mock.calls.length).toEqual(1);
+        // ...TODO
     });
-    */
+    
 });
 
 /* HomeHeading Component */
 /* Coverage Complete */
-describe('HomeHeading', () => 
-{
+describe('HomeHeading', () => {
     test('HomeHeading snapshot renders', () => {
         const component = renderer.create(<HomeHeading />);
         let tree = component.toJSON();
@@ -69,8 +82,7 @@ describe('HomeHeading', () =>
 
 /* Footer Component */
 /* Coverage Complete */
-describe('Footer', () => 
-{
+describe('Footer', () => {
     test('Footer snapshot renders', () => {
         const component = renderer.create(<Footer />);
         let tree = component.toJSON();
@@ -79,8 +91,7 @@ describe('Footer', () =>
 });
 
 /* Header Component */
-describe('Header', () => 
-{
+describe('Header', () => {
     const navComponent = shallow(<Header />);
 
     it('should contain 3 nav.links', () => {
@@ -93,12 +104,6 @@ describe('Header', () =>
         expect(items).toHaveLength(1);
     });
 
-    /*
-    it('should render a pc MenuItem', () => {
-        navComponent.find('.navBrand').simulate('click');
-    });
-    */
-
     test('Header snapshot renders', () => {
         const component = renderer.create(<Header />);
         let tree = component.toJSON();
@@ -108,8 +113,7 @@ describe('Header', () =>
 
 /* Loading Component */
 /* Coverage Complete */
-describe('Loading', () => 
-{
+describe('Loading', () => {
     test('Loading snapshot renders', () => {
         const component = renderer.create(<Loading />);
         let tree = component.toJSON();
