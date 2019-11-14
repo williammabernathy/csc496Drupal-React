@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import App, { Recipe, RecipeFull, HomeHeading, Footer, Header, Loading } from './App';
+import App, { Recipe, RecipeFull, HomeHeading, Footer, Header, Loading, } from './App';
 import { Navbar, Nav} from 'react-bootstrap';
 import { mount, shallow } from 'enzyme';
 
@@ -106,6 +106,20 @@ describe('App', () => {
     it('tests a function changeRecipe', () =>
     {
         expect(wrapper.instance().changeRecipe()).toMatchSnapshot();
+    });
+
+    it('test function changeRecipe when ID === -1', () =>
+    {
+        wrapper.setState({ results: mockRecipe, currentRecipe: 0 });
+        wrapper.update();
+        expect(wrapper.instance().changeRecipe(-1)).toEqual(mockRecipe.length - 1);
+    });
+
+    it('test function changeRecipe when ID === results.length', () =>
+    {
+        wrapper.setState({ results: mockRecipe, currentRecipe: mockRecipe.length - 1 });
+        wrapper.update();
+        expect(wrapper.instance().changeRecipe(mockRecipe.length)).toEqual(0);
     });
 
     afterAll(done => 

@@ -182,21 +182,24 @@ class App extends Component
   //update the currentRecipe we're currently viewing once previous or next is pressed
   changeRecipe(ID)
   {
-    const { results } = this.state;
+    const { results, currentRecipe } = this.state;
 
     //if -1, means previous was pressed. start over from last element in results
-    if(ID === -1)
+    if(results && ID === -1)
     {
       this.setState({ currentRecipe: results.length - 1 });
+      return this.state.currentRecipe;
     }
     //if we're at max and the length is reached, start over from beginning
     else if (results && ID === results.length)
     {
       this.setState({ currentRecipe: 0 })
+      return this.state.currentRecipe;
     }
     else
     {
       this.setState({ currentRecipe: ID })
+      return this.state.currentRecipe;
     }
   }
 
@@ -354,4 +357,4 @@ export default App;
 
 //export custom components for reference elsewhere
 //ie testing
-export { Recipe, RecipeFull, HomeHeading, Footer, Header, Loading };
+export { Recipe, RecipeFull, HomeHeading, Footer, Header, Loading, };
