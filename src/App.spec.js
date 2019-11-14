@@ -59,6 +59,7 @@ describe('App', () => {
         expect(wrapperMount.find(Recipe).length).toEqual(2);
     });
 
+    //inner recipe component
     it('renders Recipe on recipe page', () =>
     {
         wrapperMount.setState({ results: mockRecipe, homeHead: mockHome, page: "recipes" });
@@ -66,6 +67,7 @@ describe('App', () => {
         expect(wrapperMount.find(Recipe).length).toEqual(2);
     });
 
+    //inner recipeFull component
     it('renders RecipeFull current at 1', () =>
     {
         wrapperMount.setState({ results: mockRecipe, currentRecipe: 1, homeHead: mockHome, page: "recipeDetailed" });
@@ -73,16 +75,19 @@ describe('App', () => {
         expect(wrapperMount.find(RecipeFull).length).toEqual(1);
     });
 
+    //inner loading component
     it('renders Loading', ()  =>
     {
         expect(wrapperMount.find(Loading).length).toEqual(1);
     });
 
+    //inner header component
     it('renders Header', () =>
     {
         expect(wrapperMount.find(Header).length).toEqual(1);
     });
 
+    //inner footer component
     it('renders Footer', () =>
     {
         expect(wrapperMount.find(Footer).length).toEqual(1);

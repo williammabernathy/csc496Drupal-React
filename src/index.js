@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+//mount App component in ./public/index.html
+//where <div className="root"
 ReactDOM.render(
     <App />, 
     document.getElementById('root')
 );
 
+//reload on changes
 if (module.hot)
 {
     module.hot.accept()

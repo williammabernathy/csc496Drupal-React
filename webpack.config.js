@@ -9,6 +9,7 @@ module.exports =
         module: 
         {
             rules: [
+                //rules for parsing .js or .jsx file
                 {
                     
                     test: /\.(js|jsx)$/,
@@ -17,6 +18,8 @@ module.exports =
                         'babel-loader',
                     ]
                 },
+                //rule for parsing .css files
+                //keep in mind, will not cover .scss and others
                 {
                     test: /\.css$/,
                     exclude: /node_modules/,
@@ -32,6 +35,8 @@ module.exports =
             extensions: ['*', '.js', '.jsx']
         },
         /*
+        output, as well as devServer, are used to generate and display
+        testing results or general parsing messages via webpack
         output:
         {
             path: __dirname + '/dist',

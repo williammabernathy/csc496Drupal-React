@@ -54,7 +54,8 @@ const RecipeFull = ({ ID, title, field_images, field_ingredients, body, changeRe
         <div><div dangerouslySetInnerHTML={{ __html: body }}/></div>
         <hr/>
 
-        {/* buttons to cycle through recipes. change url when pressed*/}
+        {/* buttons to cycle through recipes. change url when pressed
+            increment or decrement ID to cycle recipes */}
         <Button id="previous" href={`${recURL}/${ID}`} className="previous" onClick = {() => changeRecipe(ID-1)}>
           Previous
         </Button>
@@ -66,6 +67,9 @@ const RecipeFull = ({ ID, title, field_images, field_ingredients, body, changeRe
   );
 }
 
+//Head component used to display data from fetching the home page
+//info from the test drupal site
+//renders the html within the json data
 const HomeHeading = ( { body } ) =>
 {
   return (
@@ -101,7 +105,7 @@ const Header = ({ viewHome, viewRecipeNavClick }) =>
   );
 }
 
-//general footer
+//general footer component
 const Footer = () =>
 {
   return(
@@ -132,6 +136,7 @@ class App extends Component
       homeHead: null,           //data from fetching home page
     }
 
+    //binding functions
     this.fetchRecipes = this.fetchRecipes.bind(this);
     this.fetchHome = this.fetchHome.bind(this);
     this.viewRecipeClick = this.viewRecipeClick.bind(this);
@@ -143,17 +148,19 @@ class App extends Component
   /*
     Functions
   */
- //api call
+ //fetch recipes from test drupal site
   fetchRecipes()
   {
     fetch(`${PATH_BASE}${PATH_JSON}${PARAM_TYPE}`).then(response => response.json()).then(results => this.setState({ results }))
   }
 
+  //fetch home page information from drupal test site
   fetchHome()
   {
     fetch(`http://gtest.dev.wwbtc.com/json/page?_format=json`).then(response => response.json()).then(homeHead => this.setState({ homeHead }))
   }
 
+  //once component mounts on second pass, fetch data
   componentDidMount() 
   { 
     this.fetchRecipes(); 
@@ -180,11 +187,13 @@ class App extends Component
   }
 
   //update the currentRecipe we're currently viewing once previous or next is pressed
+  //return statements added for testing purposes
   changeRecipe(ID)
   {
     const { results, currentRecipe } = this.state;
 
-    //if -1, means previous was pressed. start over from last element in results
+    //if -1, means previous was pressed while at first index. 
+    //start over from last element in results
     if(results && ID === -1)
     {
       this.setState({ currentRecipe: results.length - 1 });
@@ -208,22 +217,23 @@ class App extends Component
   */
   render() 
   {
-    //get our data to use for rendering
+    //get our data from props to use for rendering
     const { results, page, currentRecipe, homeHead} = this.state;
 
-    //slice up the results and only take first 2/3 to display on the homepage
+    //slice up the results and only take first 2 to display on the homepage
     if(results)
     {
       var resultsRecHome = results.slice(0, 2);
     }
 
+    //only want first homepage message
     if(homeHead)
     {
       var homeHeadSlice = homeHead.slice(0, 1);
     }
 
     //if results null, show loading
-    //first pass always returns null
+    //first pass always returns null as App component not mounted
     if (!results || !homeHead) 
     {
       return (
@@ -243,7 +253,7 @@ class App extends Component
     }
     else 
     {
-      //show home page
+      //show home page; default 
       if (page === "home") 
       {
         return (
@@ -293,6 +303,7 @@ class App extends Component
         );
       }
       //show recipes page
+      //page change occurs when navbar viewRecipe button is clicked
       else if (page === "recipes") 
       {
         return (
@@ -323,6 +334,8 @@ class App extends Component
         );
       }
       //show detailed individual recipe page
+      //page change occurs when viewRecipeDetail is clicked
+      //from homepage recipes or recipe lists
       else if (page === "recipeDetailed") 
       {
         return (
