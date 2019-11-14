@@ -8,7 +8,31 @@ import { mount, shallow } from 'enzyme';
 /* App Component (Main) */
 describe('App', () => {
     const wrapper = shallow(<App />);
-    const wrapperMount = mount(<App />);
+    var wrapperMount;// = mount(<App />);
+
+    var mockRecipe = [
+        {
+            body: "body",
+            field_images: "image",
+            field_ingredients: "1 111",
+            field_summary: "summary ",
+            title: "title",
+        },
+        {
+            body: "body",
+            field_images: "image",
+            field_ingredients: "1 1 1 1",
+            field_summary: "summary ",
+            title: "title ",
+        }
+    ]
+
+    var mockHome = [
+        {
+            body: "body",
+            title: "title",
+        }
+    ]
 
     test('App snapshot renders', () => {
         const component = renderer.create(<App />);
@@ -16,9 +40,51 @@ describe('App', () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it('will mount', () =>
+    beforeEach(() => {
+        wrapperMount = mount(<App />);
+    });
+
+    it('renders Recipe on home page', () =>
     {
-        expect(wrapper.length).toEqual(1);
+        wrapperMount.setState({ results: mockRecipe, homeHead: mockHome, page: "home" });
+        //wrapper.instance().forceUpdate()
+        expect(wrapperMount.find(Recipe).length).toEqual(2);
+    });
+
+    it('renders Recipe on recipe page', () =>
+    {
+        wrapperMount.setState({ results: mockRecipe, homeHead: mockHome, page: "recipes" });
+        //wrapper.instance().forceUpdate()
+        expect(wrapperMount.find(Recipe).length).toEqual(2);
+    });
+
+    it('renders RecipeFull', () =>
+    {
+        wrapperMount.setState({ results: mockRecipe, homeHead: mockHome, page: "recipeDetailed" });
+        //wrapper.instance().forceUpdate()
+        expect(wrapperMount.find(RecipeFull).length).toEqual(1);
+    });
+
+    it('renders Loading', () =>
+    {
+        expect(wrapperMount.find(Loading).length).toEqual(1);
+    });
+
+    it('renders Header', () =>
+    {
+        expect(wrapperMount.find(Header).length).toEqual(1);
+    });
+
+    it('renders Footer', () =>
+    {
+        expect(wrapperMount.find(Footer).length).toEqual(1);
+    });
+
+    it('renders HomeHeading', () =>
+    {
+        wrapperMount.setState({ results: mockRecipe, homeHead: mockHome });
+        //wrapper.instance().forceUpdate()
+        expect(wrapperMount.find(HomeHeading).length).toEqual(1);
     });
 
     it('tests a function viewRecipeClick', () =>

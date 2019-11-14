@@ -1,6 +1,7 @@
 export const fetch = require("node-fetch");
 
 //api url variables
+//http://gtest.dev.wwbtc.com/json/rec
 export const PATH_BASE = 'http://gtest.dev.wwbtc.com'; 
 export const PATH_JSON = '/json'; 
 export const PARAM_TYPE = '/rec';
