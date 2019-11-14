@@ -203,6 +203,7 @@ exports[`Recipe Recipe snapshot renders 1`] = `
           aria-label={null}
           className="btn btn-secondary"
           href="#recipe/undefined"
+          id="full"
           onClick={[Function]}
         >
           View Recipe
@@ -247,6 +248,7 @@ exports[`RecipeFull Recipe Full snapshot renders 1`] = `
       aria-label={null}
       className="previous btn btn-secondary"
       href="#recipe/undefined"
+      id="previous"
       onClick={[Function]}
     >
       Previous
@@ -255,6 +257,7 @@ exports[`RecipeFull Recipe Full snapshot renders 1`] = `
       aria-label={null}
       className="next btn btn-secondary"
       href="#recipe/undefined"
+      id="next"
       onClick={[Function]}
     >
       Next

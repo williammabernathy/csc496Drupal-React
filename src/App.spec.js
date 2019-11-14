@@ -1,14 +1,14 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import App, { Recipe, RecipeFull, HomeHeading, Footer, Header, Loading } from './App';
-import { fetch, PATH_BASE, PATH_JSON, PARAM_TYPE, recURL, homeURL } from './constants/index.js'
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, Button } from 'react-bootstrap';
 import { mount, shallow } from 'enzyme';
+import { doesNotReject } from 'assert';
 
 /* App Component (Main) */
 describe('App', () => {
     const wrapper = shallow(<App />);
-    var wrapperMount;// = mount(<App />);
+    var wrapperMount;
 
     var mockRecipe = [
         {
@@ -34,13 +34,15 @@ describe('App', () => {
         }
     ]
 
-    test('App snapshot renders', () => {
+    test('App snapshot renders', () => 
+    {
         const component = renderer.create(<App />);
         let tree = component.toJSON();
         expect(tree).toMatchSnapshot();
     });
 
-    beforeEach(() => {
+    beforeEach(() => 
+    {
         wrapperMount = mount(<App />);
     });
 
@@ -65,7 +67,7 @@ describe('App', () => {
         expect(wrapperMount.find(RecipeFull).length).toEqual(1);
     });
 
-    it('renders Loading', () =>
+    it('renders Loading', ()  =>
     {
         expect(wrapperMount.find(Loading).length).toEqual(1);
     });
@@ -106,44 +108,97 @@ describe('App', () => {
     {
         expect(wrapper.instance().changeRecipe()).toMatchSnapshot();
     });
+
+    afterAll(done => 
+    {
+        done()
+    })
 });
 
 /* Recipe Component */
-describe('Recipe', () => {
-    test('Recipe snapshot renders', () => {
+describe('Recipe', () => 
+{
+    let wrapper;
+    const setState = jest.fn();
+    const useStateSpy = jest.spyOn(React, 'useState')
+    useStateSpy.mockImplementation((init) => [init, setState]);
+
+    beforeEach(() => {
+        wrapper = shallow(<Recipe
+            ID={1}
+            title={'title'}
+            field_images={'field_images'}
+            field_ingredients={'field_ingredients'}
+            body={'body'}
+            viewRecipeClick={setState}
+        />);
+    });
+
+    test('Recipe snapshot renders', () => 
+    {
         const component = renderer.create(<Recipe />);
         let tree = component.toJSON();
         expect(tree).toMatchSnapshot();
     });
 
-    it('view more button is clicked', () => {
-        // ...TODO
+    it('view more button is clicked', () => 
+    {
+        wrapper.find('#full').props().onClick();
+        expect(setState).toHaveBeenCalledWith(1);
     });
 });
 
 /* RecipeFull Component */
-describe('RecipeFull', () => {
-    test('Recipe Full snapshot renders', () => {
+describe('RecipeFull', () => 
+{
+    let wrapper;
+    const setState = jest.fn();
+    const useStateSpy = jest.spyOn(React, 'useState')
+    useStateSpy.mockImplementation((init) => [init, setState]);
+
+    beforeEach(() => {
+        wrapper = shallow(<RecipeFull
+            ID={1}
+            title={'title'}
+            field_images={'field_images'}
+            field_ingredients={'field_ingredients'}
+            body={'body'}
+            changeRecipe={setState}
+        />);
+    });
+
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
+    test('Recipe Full snapshot renders', () => 
+    {
         const component = renderer.create(<RecipeFull />);
         let tree = component.toJSON();
         expect(tree).toMatchSnapshot();
     });
 
     // ID, title, field_images, field_ingredients, body, changeRecipe
-    it('next button is clicked', () => {
-        // ...TODO
+    it('next button is clicked', () => 
+    {
+        wrapper.find('#next').props().onClick();
+        expect(setState).toHaveBeenCalledWith(2);
     });
 
-    it('previous button is clicked', () => {
-        // ...TODO
+    it('previous button is clicked', () => 
+    {
+        wrapper.find('#previous').props().onClick();
+        expect(setState).toHaveBeenCalledWith(0);
     });
     
 });
 
 /* HomeHeading Component */
 /* Coverage Complete */
-describe('HomeHeading', () => {
-    test('HomeHeading snapshot renders', () => {
+describe('HomeHeading', () => 
+{
+    test('HomeHeading snapshot renders', () => 
+    {
         const component = renderer.create(<HomeHeading />);
         let tree = component.toJSON();
         expect(tree).toMatchSnapshot();
@@ -152,8 +207,10 @@ describe('HomeHeading', () => {
 
 /* Footer Component */
 /* Coverage Complete */
-describe('Footer', () => {
-    test('Footer snapshot renders', () => {
+describe('Footer', () => 
+{
+    test('Footer snapshot renders', () => 
+    {
         const component = renderer.create(<Footer />);
         let tree = component.toJSON();
         expect(tree).toMatchSnapshot();
@@ -161,20 +218,24 @@ describe('Footer', () => {
 });
 
 /* Header Component */
-describe('Header', () => {
+describe('Header', () => 
+{
     const navComponent = shallow(<Header />);
 
-    it('should contain 3 nav.links', () => {
+    it('should contain 3 nav.links', () => 
+    {
         const items = navComponent.find(Nav.Link);
         expect(items).toHaveLength(3);
     });
 
-    it('should contain 1 navbar.brand', () => {
+    it('should contain 1 navbar.brand', () => 
+    {
         const items = navComponent.find(Navbar.Brand);
         expect(items).toHaveLength(1);
     });
 
-    test('Header snapshot renders', () => {
+    test('Header snapshot renders', () => 
+    {
         const component = renderer.create(<Header />);
         let tree = component.toJSON();
         expect(tree).toMatchSnapshot();
@@ -183,8 +244,10 @@ describe('Header', () => {
 
 /* Loading Component */
 /* Coverage Complete */
-describe('Loading', () => {
-    test('Loading snapshot renders', () => {
+describe('Loading', () => 
+{
+    test('Loading snapshot renders', () => 
+    {
         const component = renderer.create(<Loading />);
         let tree = component.toJSON();
         expect(tree).toMatchSnapshot();

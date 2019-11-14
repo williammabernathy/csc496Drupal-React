@@ -24,7 +24,7 @@ const Recipe = ( { ID, title, field_images, field_summary, viewRecipeClick } ) =
 
           {/* whenever an element is clicked, get its ID */}
           <center>
-            <Button href={`${recURL}/${ID}`} onClick={() => viewRecipeClick(ID)}>
+            <Button id="full" href={`${recURL}/${ID}`} onClick={() => viewRecipeClick(ID)}>
               View Recipe
             </Button>
           </center>
@@ -55,10 +55,10 @@ const RecipeFull = ({ ID, title, field_images, field_ingredients, body, changeRe
         <hr/>
 
         {/* buttons to cycle through recipes. change url when pressed*/}
-        <Button href={`${recURL}/${ID}`} className="previous" onClick = {() => changeRecipe(ID-1)}>
+        <Button id="previous" href={`${recURL}/${ID}`} className="previous" onClick = {() => changeRecipe(ID-1)}>
           Previous
         </Button>
-        <Button href={`${recURL}/${ID}`} className="next" onClick = {() => changeRecipe(ID+1)}>
+        <Button id="next" href={`${recURL}/${ID}`} className="next" onClick = {() => changeRecipe(ID+1)}>
           Next
         </Button>
       </div>
