@@ -9,6 +9,7 @@ describe('App', () => {
     const wrapper = shallow(<App />);
     var wrapperMount;
 
+    //mock data to mimic results in App component
     var mockRecipe = [
         {
             body: "body",
@@ -26,6 +27,7 @@ describe('App', () => {
         }
     ]
 
+    //mock data to mimic home page results
     var mockHome = [
         {
             body: "body",
@@ -33,6 +35,7 @@ describe('App', () => {
         }
     ]
 
+    //simple test to check if the component renders via snapshot
     test('App snapshot renders', () => 
     {
         const component = renderer.create(<App />);
@@ -40,11 +43,15 @@ describe('App', () => {
         expect(tree).toMatchSnapshot();
     });
 
+    //before each tests, mount the app component
+    //not all tests will use mount, some will use shallow
     beforeEach(() => 
     {
         wrapperMount = mount(<App />);
     });
 
+    //check that components inside App render
+    //also check multiple pages
     it('renders Recipe on home page', () =>
     {
         wrapperMount.setState({ results: mockRecipe, homeHead: mockHome, page: "home" });
@@ -88,6 +95,7 @@ describe('App', () => {
         expect(wrapperMount.find(HomeHeading).length).toEqual(1);
     });
 
+    //simple function render checks
     it('tests a function viewRecipeClick', () =>
     {
         expect(wrapper.instance().viewRecipeClick()).toMatchSnapshot();
@@ -108,6 +116,8 @@ describe('App', () => {
         expect(wrapper.instance().changeRecipe()).toMatchSnapshot();
     });
 
+    //check changeRecipe function when the passed value meets
+    //its upper and lower limits
     it('test function changeRecipe when ID === -1', () =>
     {
         wrapper.setState({ results: mockRecipe, currentRecipe: 0 });
@@ -122,6 +132,7 @@ describe('App', () => {
         expect(wrapper.instance().changeRecipe(mockRecipe.length)).toEqual(0);
     });
 
+    //failsafe to close any asynchronous tasks
     afterAll(done => 
     {
         done()
@@ -131,11 +142,12 @@ describe('App', () => {
 /* Recipe Component */
 describe('Recipe', () => 
 {
-    let wrapper;
-    const setState = jest.fn();
-    const useStateSpy = jest.spyOn(React, 'useState')
-    useStateSpy.mockImplementation((init) => [init, setState]);
+    let wrapper;    //shallow Recipe wrapper
+    const setState = jest.fn();     //mock functions
+    const useStateSpy = jest.spyOn(React, 'useState')       //state spy
+    useStateSpy.mockImplementation((init) => [init, setState]);     //mimic state change
 
+    //fill shallow component with mock data
     beforeEach(() => {
         wrapper = shallow(<Recipe
             ID={1}
@@ -147,6 +159,7 @@ describe('Recipe', () =>
         />);
     });
 
+    //renders via snapshot
     test('Recipe snapshot renders', () => 
     {
         const component = renderer.create(<Recipe />);
@@ -154,6 +167,8 @@ describe('Recipe', () =>
         expect(tree).toMatchSnapshot();
     });
 
+    //check that the button to view a recipe's details is clicked
+    //and that it returns correct values
     it('view more button is clicked', () => 
     {
         wrapper.find('#full').props().onClick();
@@ -164,11 +179,13 @@ describe('Recipe', () =>
 /* RecipeFull Component */
 describe('RecipeFull', () => 
 {
+    //mock setup
     let wrapper;
     const setState = jest.fn();
     const useStateSpy = jest.spyOn(React, 'useState')
     useStateSpy.mockImplementation((init) => [init, setState]);
 
+    //populate component with mockdata
     beforeEach(() => {
         wrapper = shallow(<RecipeFull
             ID={1}
@@ -180,10 +197,12 @@ describe('RecipeFull', () =>
         />);
     });
 
+    //clear mock data after each tests
     afterEach(() => {
         jest.clearAllMocks();
     });
 
+    //test component renders via snapshot
     test('Recipe Full snapshot renders', () => 
     {
         const component = renderer.create(<RecipeFull />);
@@ -191,6 +210,8 @@ describe('RecipeFull', () =>
         expect(tree).toMatchSnapshot();
     });
 
+    //check button clicks for previous and next recipe views
+    //ensure the value in state is changed correctly
     // ID, title, field_images, field_ingredients, body, changeRecipe
     it('next button is clicked', () => 
     {
@@ -238,6 +259,7 @@ describe('Header', () =>
     const useStateSpy = jest.spyOn(React, 'useState')
     useStateSpy.mockImplementation((init) => [init, setState]);
 
+    //fill component with mock data
     beforeEach(() => {
         navComponent = shallow(<Header
             viewHome={setState}
@@ -245,6 +267,7 @@ describe('Header', () =>
         />);
     });
 
+    //check that it renders via snapshot
     test('Header snapshot renders', () => 
     {
         const component = renderer.create(<Header />);
@@ -252,30 +275,35 @@ describe('Header', () =>
         expect(tree).toMatchSnapshot();
     });
 
+    //check for all nav.links
     it('should contain 3 nav.links', () => 
     {
         const items = navComponent.find(Nav.Link);
         expect(items).toHaveLength(3);
     });
 
+    //check that clicking the home nav.link returns an empty call
     it('viewHome link is clicked', () => 
     {
         navComponent.find('#viewHome').props().onClick();
         expect(setState).toHaveBeenCalledWith();
     });
 
+    //check that clicking the recipe list nav.link returns an empty call
     it('viewRecList link is clicked', () => 
     {
         navComponent.find('#viewRecList').props().onClick();
         expect(setState).toHaveBeenCalledWith();
     });
 
+    //check that one navbar.brand renders
     it('should contain 1 navbar.brand', () => 
     {
         const items = navComponent.find(Navbar.Brand);
         expect(items).toHaveLength(1);
     });
 
+    //check that clicking the home nav.link returns an empty call
     it('brand link is clicked', () => 
     {
         navComponent.find('#brand').props().onClick();
